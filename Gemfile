@@ -31,7 +31,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'ancestry'
 gem 'rails_admin'
-
+gem 'foundation-rails', git: "https://github.com/zurb/foundation-rails", branch: "v5"
+gem 'react-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
