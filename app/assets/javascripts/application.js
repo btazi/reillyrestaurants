@@ -10,12 +10,20 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+//= require es6/es6-module-loader
+//= require es6/system
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require lodash
 //= require react
 //= require react_ujs
+//= require flux
+//= require eventemitter
 //= require components
+//= require app
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
+
+System.import('app');

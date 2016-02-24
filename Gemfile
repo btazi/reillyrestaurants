@@ -33,6 +33,9 @@ gem 'ancestry'
 gem 'rails_admin'
 gem 'foundation-rails', git: "https://github.com/zurb/foundation-rails", branch: "v5"
 gem 'react-rails'
+gem 'flux-rails-assets'
+gem 'lodash-rails'
+gem 'sprockets-es6'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
