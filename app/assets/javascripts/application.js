@@ -21,9 +21,8 @@
 //= require flux
 //= require eventemitter
 //= require components
-//= require app
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
 
-System.import('app');
+System.import('components/comment_section');
