@@ -104,6 +104,7 @@ GEM
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
     rack (1.6.4)
+    rack-cors (0.4.0)
     rack-pjax (0.8.0)
       nokogiri (~> 1.5)
       rack (~> 1.1)
@@ -206,6 +207,7 @@ DEPENDENCIES
   foundation-rails!
   jbuilder (~> 2.0)
   lodash-rails
+  rack-cors
   rails (= 4.2.2)
   rails_admin
   react-rails

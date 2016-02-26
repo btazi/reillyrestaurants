@@ -9,6 +9,9 @@ class CommentStore extends EventEmitter {
 
 		AppDispatcher.register((payload) => {
 			switch(payload.actionType) {
+				case Constants.SET_COMMENTS:
+					this.setComments(payload.comments)
+					this.emitChange()
 				case Constants.ADD_COMMENT:
 					this.addComment(payload.comment)
 					this.emitChange()
@@ -21,11 +24,17 @@ class CommentStore extends EventEmitter {
 	}
 
 	addComment (comment) {
-		this._comments[comment.id || this._comments.length] = comment;
+		this._comments[this._comments.length] = comment;
 	}
 
-	comments () {
-		return this._comments;
+	setComments (comments) {
+		comments.forEach( comment => {
+			this.addComment(comment)
+		})
+	}
+
+	comments (parentId) {
+		return this._comments.filter( c => { return c && c.parent_id === parentId } );
 	}
 
 	addChangeListener (callback){
