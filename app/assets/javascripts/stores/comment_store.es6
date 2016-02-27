@@ -29,7 +29,7 @@ class CommentStore extends EventEmitter {
 	}
 
 	addComment (comment) {
-		this._comments[this._comments.length] = comment;
+		this._comments[comment.id || this._comments.length] = comment;
 	}
 
 	setComments (comments) {
@@ -43,7 +43,7 @@ class CommentStore extends EventEmitter {
 	}
 
 	comments (parentId) {
-		return this._comments.filter( c => { return c && c.parent_id === parentId } );
+		return _.chain(this._comments.filter( c => { return c && c.parent_id === parentId } ), 'rank').sortBy('rank').reverse().value();
 	}
 
 	addChangeListener (callback){

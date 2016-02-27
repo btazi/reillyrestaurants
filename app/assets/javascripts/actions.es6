@@ -5,34 +5,41 @@ import Api from 'api'
 // Actions
 class Actions {
 
-	static addComment(params) {
-		Api.post('/restaurants/1/comments', {
-			comment: params
-		}).then( resp => {
-			return resp.json()
-		}).then( comment => {
-			AppDispatcher.dispatch({
-				 actionType: Constants.ADD_COMMENT,
-				 comment: params
-			});
-		})
+	constructor(restaurantId) {
+		this.restaurantId = restaurantId
+		this.watchInterval = setInterval(this.watch.bind(this), 1000)
 	}
 
-	static setComments(params) { 
+  addComment(params) {
+    Api.post(`/restaurants/${this.restaurantId}/comments`, {
+      comment: params
+    }).then( comment => {
+      AppDispatcher.dispatch({
+        actionType: Constants.ADD_COMMENT,
+        comment: comment
+      });
+    })
+  }
+
+	setComments(params) { 
 		AppDispatcher.dispatch({
 			 actionType: Constants.SET_COMMENTS,
 			 comments: params
 		});
 	} 
 
-	static upvoteComment(comment) {
-		Api.put(`/restaurants/1/comments/${comment.id}/upvote`).then( resp => {
-			return resp.json()
-		}).then( comment => {
-			AppDispatcher.dispatch({
-				 actionType: Constants.UPVOTE_COMMENT,
-				 comment: comment
-			});
+	upvoteComment(comment) {
+    Api.put(`/restaurants/${this.restaurantId}/comments/${comment.id}/upvote`).then( comment => {
+      AppDispatcher.dispatch({
+        actionType: Constants.UPVOTE_COMMENT,
+        comment: comment
+      });
+    });
+  }
+
+	watch() {
+		Api.get(`/restaurants/${this.restaurantId}/comments`).then( comments => {
+			this.setComments(comments)
 		})
 	}
 
