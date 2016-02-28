@@ -27,3 +27,4 @@
 /cookbooks
 *.directory
 .rbenv-gemsets
+/client/node_modules/
